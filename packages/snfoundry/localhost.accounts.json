@@ -1,11 +1,11 @@
 {
   "alpha-goerli": {
     "deployer_devnet": {
-      "address": "0x64b48806902a367c8598f4f95c305e8c1a1acba5f082d294a43793113115691",
-      "class_hash": "0x40eb847952726e600b41f8195a26a667f610cfd62083eee9ec24b612b53b503",
+      "address": "0xb3ff441a68610b30fd5e2abbf3a1548eb6ba6f3559f2862bf2dc757e5828ca",
+      "class_hash": "0x05400e90f7e0ae78bd02c77cd75527280470e2fe19c54970dd79dc37a9d3645c",
       "deployed": true,
-      "private_key": "0x71d7bb07b9a64f6f78ac4c816aff4da9",
-      "public_key": "0x39d9e6ce352ad4530a0ef5d5a18fd3303c3606a7fa6ac5b620020ad681cc33b",
+      "private_key": "0x2bbf4f9fd0bbb2e60b0316c1fe0b76cf7a4d0198bd493ced9b8df2a3a24d68a",
+      "public_key": "0x640466ebd2ce505209d3e5c4494b4276ed8f1cde764d757eb48831961f7cdea",
       "salt": "0x1"
     }
   }
