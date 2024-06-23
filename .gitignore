@@ -1,17 +1,7 @@
-.vscode/**
-node_modules
-local-devnet
-package-lock.json
-.idea
-.husky
-.github
-
-# yarn / eslint
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/sdks
-!.yarn/versions
-.eslintcache
-.DS_Store
+.env
+test.py
+test2.py
+torch_eth_price_predictor.onnx
+__pycache__
+tmp
+test.json

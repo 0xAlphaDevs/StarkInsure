@@ -1,168 +1,197 @@
-# 🏗 Scaffold-Stark 2
+## TradeX : Starknet ETH Trading Agent
 
-<h4 align="center">
-  <a href="https://www.docs.scaffoldstark.com/">Documentation</a> |
-  <a href="https://www.scaffoldstark.com/">Website</a>
-</h4>
+On chain ETH trading strategy AI agent deployed on starknet mainnet
 
-🧪 An open-source, up-to-date toolkit for building decentralized applications (dapps) on Starknet blockchain. It's designed to make it easier for developers to create and deploy smart contracts and build user interfaces that interact with those contracts.
+## Table of Contents
 
-⚙️ Built using NextJS, Starknet.js, Scarb, Starknet-React, Starknet Foundry and Typescript.
+1. [Links](#links)
+2. [Project Overview](#project-overview)
+3. [Project Documentation ](#project-documentation)
+4. [Demo](#demo)
+5. [Team](#team)
 
-- ✅ **Contract Fast Reload**: Your frontend auto-adapts to your smart contracts as you deploy them.
-- 🪝 [**Custom hooks**](https://www.docs.scaffoldstark.com/hooks/): Collection of React hooks wrapper around [starknet-react](https://starknet-react.com/) to simplify interactions with smart contracts with typescript autocompletion.
-- 🧱 [**Components**](https://www.docs.scaffoldstark.com/components): Collection of common web3 components to quickly build your frontend.
-- 🔥 **Burner Wallet & Prefunded Account**: Quickly test your application with a burner wallet and prefunded accounts.
-- 🔐 **Integration with Wallet Providers**: Connect to different wallet providers and interact with Starknet network.
+## Links
 
-![Debug Contracts tab](./assests/debug-contracts.png)
+- [Presentation](https://www.canva.com/design/DAGIUJEDmgM/a9Bas5drLtb1-W04XqLmhw/view?utm_content=DAGIUJEDmgM)
 
-## Requirements
+## Project Overview
 
-Before you begin, you need to install the following tools:
+### Agent Business Case
 
-- [Node (>= v18.17)](https://nodejs.org/en/download/)
-- Yarn ([v1](https://classic.yarnpkg.com/en/docs/install/) or [v2+](https://yarnpkg.com/getting-started/install))
-- [Git](https://git-scm.com/downloads)
+The agent is designed to facilitate trading on the ETH/USDC pool using an AI-driven strategy. The goal is to optimize trades based on market conditions, leveraging machine learning models for prediction and decision-making.
 
-### Scarb version
+### Tech Stack
 
-To ensure the proper functioning of scaffold-stark, your local `Scarb` version must be `2.5.4`. To accomplish this, first check your local Scarb version:
+- **Giza CLI & SDK** : For model training, ONNX conversion, cairo transpilation and deployment.
+- **Starknet Mainnet** : Blockchain platform for deploying and executing contracts.
+- **PyTorch** : Framework for building deep learning models.
+- **Python Libraries** : Poetry for Python dependencies,Pandas, numpy, yFinance for historical data, scikit-learn for ML tooling.
 
-```sh
-scarb --version
-```
+### Possible Improvements
 
-If your local Scarb version is not `2.5.4`, you need to install it.
+- **Model Enhancement** : Model training with more historical price data to improve prediction accuracy.
+- **User Interface** : Development of a user-friendly dashboard for monitoring and controlling agent and integrated wallets for trading.
+- **Dex Integrations and custom trading stragegies** : Expanding support to other decentralised exchanges and feature for building custom on-chain trading strategies and deploy them from UI with single click.
 
-<details>
-<summary><b>Scarb Installation Process</b></summary>
+## Project Documentation
 
-To install Scarb, please refer to the [installation instructions](https://docs.swmansion.com/scarb/download).
-We strongly recommend that you install
-Scarb via [asdf](https://docs.swmansion.com/scarb/download.html#install-via-asdf), a CLI tool that can manage
-multiple language runtime versions on a per-project basis.
-This will ensure that the version of Scarb you use to work on a project always matches the one defined in the
-project settings, avoiding problems related to version mismatches.
+Welcome to this step-by-step tutorial for on-chain price prediction strategy to assist in trading on the ETH/USDC pool. In this guide, we will walk through the entire process required to setup, deploy, and run a AI trading agent using the Giza stack. By the end of this tutorial, you will have a functional system capable of executing trades on-chain based on ML model predictions.
 
-Please refer to the [asdf documentation](https://asdf-vm.com/guide/getting-started.html) to install all
-prerequisites.
+### 1. Setting up Your Development Environment
 
-Once you have `asdf` installed locally, you can download Scarb plugin with the following command:
+### Install Required Tools
 
-```bash
-asdf plugin add scarb
-```
-
-This will allow you to download specific versions. You can choose the same version as the Dojo's Cairo version, for example, 2.5.4, with the following command:
-
-```bash
-asdf install scarb 2.5.4
-```
-
-and set a global version:
-
-```bash
-asdf global scarb 2.5.4
-```
-
-Otherwise, you can simply run the following command in your terminal, and follow the onscreen instructions. This
-will install the version `2.5.4` of Scarb.
-
-```bash
-curl --proto '=https' --tlsv1.2 -sSf https://docs.swmansion.com/scarb/install.sh | sh -s -- -v 2.5.4
-```
-
-</details>
-
-### Starknet Foundry version
-
-To ensure the proper functioning of the tests on scaffold-stark, your Starknet Foundry version must be 0.23.0. To accomplish this, first check your Starknet Foundry version:
-
-```sh
-snforge --version
-```
-
-If your Starknet Foundry version is not `0.23.0`, you need to install it.
-
-- [Starknet Foundry](https://foundry-rs.github.io/starknet-foundry/getting-started/installation.html)
-
-## Compatible versions
-
-- Scarb - v2.5.4
-- Snforge - v0.23
-- Cairo - v2.5.4
-- Rpc - v0.5.1
-
-## Quickstart
-
-To get started with Scaffold-Stark 2, follow the steps below:
-
-1. Clone this repo and install dependencies
-
-```bash
-git clone https://github.com/Quantum3-Labs/scaffold-stark-2 --recurse-submodules
-cd scaffold-stark-2
-yarn install
-```
-
-2. Prepare your environment variables.
-
-By default Scaffold-Stark 2 takes the first prefunded account from `starknet-devnet` as a deployer address, thus **you can skip this step!**. But if you want use the .env file anyway, you can fill the envs related to devnet with any other predeployed contract address and private key from starknet-devnet.
-
-**Note:** In case you want to deploy on Sepolia, you need to fill the envs related to sepolia testnet with your own contract address and private key.
-
-```bash
-cp packages/snfoundry/.env.example packages/snfoundry/.env
-```
-
-3. Run a local network in the first terminal.
-
-**Note:** You can skip this step if you want to use Sepolia Testnet.
-
-```bash
-yarn chain
-```
-
-This command starts a local Starknet network using Devnet. The network runs on your local machine and can be used for testing and development. You can customize the network configuration in `scaffold.config.ts` for your nextjs app.
-
-**Note:** If you are on sepolia or mainnet, for a better user experience on your app, you can get a dedicated RPC from [Infura dashboard](https://www.infura.io/). A default is provided [here](https://github.com/Quantum3-Labs/scaffold-stark-2/tree/main/packages/nextjs/.env.example), in order to use this, you have to run `cp packages/nextjs/.env.example packages/nextjs/.env.local`
-
-
-4. On a second terminal, deploy the sample contract:
+- Python 3.11 or later must be installed on your machine.
+- Install `giza-sdk` to use Giza CLI and Giza agents:
 
 ```
-yarn deploy --network {NETWORK_NAME} // when NETWORK_NAME is not specified, it defaults to "devnet"
+  pip install giza-sdk
 ```
 
-**Note:** To use sepolia tesnet, you have to set {NETWORK_NAME} to `sepolia`.
-
-
-This command deploys a sample smart contract to the local network. The contract is located in `packages/snfoundry/contracts/src` and can be modified to suit your needs. The `yarn deploy` command uses the deploy script located in `packages/snfoundry/scripts-ts/deploy.ts` to deploy the contract to the network. You can also customize the deploy script.
-
-5. On a third terminal, start your NextJS app:
+Additional libraries:
 
 ```
-yarn start
+pip install -U torch pandas
 ```
 
-Visit your app on: `http://localhost:3000`. You can interact with your smart contract using the `Debug Contracts` page. You can tweak the app config in `packages/nextjs/scaffold.config.ts`.
+**Create Giza Account**
 
-**What's next**:
+If you don't have one, create a Giza account [here](https://docs.gizatech.xyz/products/platform/resources/users).
 
-- Edit your smart contract `YourContract.cairo` in `packages/snfoundry/contracts/src`
-- Edit your frontend homepage at `packages/nextjs/app/page.tsx`. For guidance on [routing](https://nextjs.org/docs/app/building-your-application/routing/defining-routes) and configuring [pages/layouts](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts) checkout the Next.js documentation.
-- Edit your deployment scripts in `packages/snfoundry/script-ts/deploy.ts`
-- Edit your smart contract tests in `packages/snfoundry/contracts/src/test`. To run tests use `yarn test`
+**Environment Variables**
 
-## Documentation
+Create a .env file in the project directory and populate it with the following variables:
+env
 
-Visit our [docs](https://www.docs.scaffoldstark.com/) to learn how to start building with Scaffold-Stark 2.
+```
+PRIVATE_KEY=
+PUBLIC_KEY=
+DRY_RUN=true # Set as true when testing Giza models locally
+STARKNET_RPC_URL=https://free-rpc.nethermind.io/mainnet-juno
+```
 
-To know more about its features, check out our [website](https://scaffoldstark.com)
+### 2. Building the Price Prediction Model
 
-## Contributing to Scaffold-Stark 2
+In this project, we are using a simple multi-layer perceptron to predict the next day's prices. After training the model, we need to compile it into the ONNX format, which will be used in the next step to transpile it into Cairo.
 
-We welcome contributions to Scaffold-Stark 2!
+**Training the Model** :
 
-Please see [CONTRIBUTING.MD](https://github.com/Quantum3-Labs/scaffold-stark-2/blob/main/CONTRIBUTING.md) for more information and guidelines for contributing to Scaffold-Stark 2.
+The model will download the ETH/USDC prices, preprocess the data, train a simple neural network with Torch, and save the model in ONNX format.
+
+```
+Script: model_training.py.
+```
+
+### 3. Deploying Inference Endpoint
+
+**_Login to Giza CLI_**
+
+```
+giza users login
+```
+
+**_Create Giza Workspace_**
+
+If you don't have a workspace, create one with:
+
+```
+giza workspaces create
+```
+
+**_Create Giza Model_**
+
+```
+giza models create --name price-pred-with-zkml --description "Price prediction with ZKML"
+```
+
+Note the model-id.
+
+**_Transpile Model to Cairo_**
+
+```
+giza transpile --model-id <YOUR-MODEL-ID> --framework CAIRO <PATH-TO-YOUR-ONNX-MODEL> --output-path <YOUR-OUTPUT-PATH>
+```
+
+**_Deploy Endpoint_**
+
+```
+giza endpoints deploy --model-id <YOUR-MODEL-ID> --version-id <YOUR-VERSION-ID>
+```
+
+### 4. Creating a Giza Agent
+
+Next, we want to create a Giza Agent that executes the verifiable inference and interacts with the blockchain.
+
+**_Create Agent_**
+
+```
+giza agents create --model-id <YOUR-MODEL-ID> --version-id <YOUR-VERSION-ID> --name <AGENT-NAME> --description <AGENT-DESCRIPTION>
+```
+
+Alternatively, if you have the endpoint-id:
+
+```
+giza agents create --endpoint-id <ENDPOINT-ID> --name <AGENT-NAME> --description <AGENT-DESCRIPTION>
+```
+
+### 5. Fetching and Predicting Prices
+
+- **Fetch Price Data** : Retrieve current price data for ETH from yFinance for past 60 days.
+- **Predict Prices** : Use the deployed model to predict future prices based on above data.
+
+### 6. Defining the Execution Flow
+
+Now we will use the giza-actions sdk to develop our AI Agent and execute trades on Starknet Mainnet. We need to implement the following steps:
+
+- Load environment variables
+- Create the AI Agent instance
+- Run verifiable inference
+- Get ETH prediction value.
+- Buy/Sell ETH according to the predicted value.
+
+### 7. Running the AI Agent
+
+Finally, we can execute our script with the desired parameters:
+
+```
+python action_agent.py --model-id <YOUR-MODEL-ID> --version-id <YOUR-VERSION-ID>
+
+// For Example
+python action_agent.py --model-id 784 --version-id 1
+```
+
+## Demo
+
+![image](/public/demo/1.jpg)
+
+Giza Agent Deployment
+![image](/public/demo/2.jpeg)
+
+Deployed Giza Model (model-id : 784, version-id:1)
+![image](/public/demo/4.jpeg)
+
+AI_Agent_Execution : USDC_InsufficientBalance
+![image](/public/demo/3.jpeg)
+
+AI_Agent_Execution : BUY_ETH_WITH_USDC
+![image](/public/demo/5.jpeg)
+
+## Team
+
+Team [AlphaDevs](https://www.alphadevs.dev) 👇
+
+### Github
+
+[Harsh Tyagi](https://github.com/mr-harshtyagi)
+[Yashasvi Chaudhary](https://github.com/0xyshv)
+
+### Twitter / X
+
+[Harsh Tyagi](https://twitter.com/0xmht)
+[Yashasvi Chaudhary](https://twitter.com/0xyshv)
+
+## Thanks
+
+- Feel free to reach out to the [AlphaDevs team](https://www.alphadevs.dev) with any questions or issues.
+
+- We appreciate your interest in our project and welcome contributions and feature suggestions.
