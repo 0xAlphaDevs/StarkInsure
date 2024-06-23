@@ -18,7 +18,6 @@ import { appChains } from "~~/services/web3/connectors";
 import { BurnerConnector } from "~~/services/web3/stark-burner/BurnerConnector";
 import provider from "~~/services/web3/provider";
 import { useNativeCurrencyPrice } from "~~/hooks/scaffold-stark/useNativeCurrencyPrice";
-import { HeaderHome } from "./headerHome";
 import { useAccount, useNetwork } from "@starknet-react/core";
 import { useRouter } from "next/navigation";
 
@@ -31,12 +30,15 @@ const ScaffoldStarkApp = ({ children }: { children: React.ReactNode }) => {
     if (status === 'connected') {
       router.push('/dashboard');
     }
+    else {
+      router.push('/')
+    }
   }, [status, router]);
 
   return (
     <>
       <div className="flex flex-col min-h-screen">
-        {status === 'connected' ? <Header /> : <HeaderHome />}
+        <Header />
         <main className="relative flex flex-col flex-1">{children}</main>
         {/* <Footer /> */}
       </div>

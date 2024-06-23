@@ -25,14 +25,14 @@ const Home: NextPage = () => {
         <div className="p-5">
           <h1 className="text-center">
             <span className="block text-2xl mb-2">Welcome to</span>
-            <span className="block text-6xl font-bold">StarkInsure</span>
+            <span className="block text-6xl font-bold">TradeX</span>
           </h1>
           {/* <div className="flex justify-center items-center space-x-2">
             <p className="my-2 font-medium">Connected Address:</p>
             <Address address={connectedAddress.address as AddressType} />
           </div> */}
           <p className="text-center text-lg">
-            On chain health insurance based on predictive health analytics
+            On chain AI based trading agents deployed on Starknet Mainnet
           </p>
         </div>
 
