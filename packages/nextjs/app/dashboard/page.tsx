@@ -1,4 +1,5 @@
 import type { NextPage } from "next";
+import MyTrades from "~~/components/dashboard/myTrades";
 import { getMetadata } from "~~/utils/scaffold-stark/getMetadata";
 
 // export const metadata = getMetadata({
@@ -11,8 +12,8 @@ const Dashboard: NextPage = () => {
   return (
     <>
       <div>Dashboard</div>
-      <div className="text-center mt-8 bg-secondary p-10">
-        <h1 className="text-4xl my-0">Dashboard</h1>
+      <div className=" mt-8 p-10">
+        <MyTrades />
       </div>
     </>
   );
